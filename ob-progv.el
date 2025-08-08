@@ -90,7 +90,8 @@ it will be let-bound to `value' during the execution of the src block."
   "Globally advise `org-babel-execute-src-block' to bind variables from headers."
   :init-value nil
   :lighter " Ob-Progv"
-  :global t
+  :global nil
+  :predicate (org-mode)
   (if ob-progv-mode
       (advice-add 'org-babel-execute-src-block :around #'ob-progv--advice)
     (advice-remove 'org-babel-execute-src-block #'ob-progv--advice)))
